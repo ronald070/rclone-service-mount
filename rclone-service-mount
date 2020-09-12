@@ -1,0 +1,58 @@
+#!/bin/bash
+#/etc/rc.d/init.d/rclone-service-mount
+
+# chkconfig: 345 99 76
+# processname: rclone-archive
+# description: Starts and Stops Rclone-Archive service
+
+# Setup, change where needed
+rclone_remote="Archive:"
+mount_dir="/cloud/Archive"
+log_file="/var/log/rclone"
+
+# no need to make changes bellow
+
+# chkconfig: 345 99 01
+# description: some startup script
+
+# Source function library.
+. /etc/init.d/functions
+
+
+start() {
+        echo "Starting Rclone Service Mount... "
+        /usr/bin/rclone mount $rclone_remote $mount_dir --daemon --vfs-cache-mode full -v --allow-other --log-file=$log_file &
+        touch /var/lock/subsys/rclone-service-mount
+        return 0
+}
+
+stop() {
+        echo "Shutting Rclone Service Mount...  "
+        pkill rclone &
+        rm -f /var/lock/subsys/rclone-service-mount
+        return 0
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    reload)
+        ;;
+    *)
+        echo "Usage: rclone-archive {start|stop|status|reload|restart}"
+ exit 1
+        ;;
+esac
+exit $?
+
+
