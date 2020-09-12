@@ -2,7 +2,14 @@
 This is a script to mount rclone as a service on your [CentOS](https://www.centos.org/) 6 server.
 
 # Before you use this script
+You need to install rclone and Fuse.
+
+## Rclone
 Before yuo can use this script you need to configure [rclone](https://rclone.org) first and you need to create an remote location in rclone. Also see [rclone install documentation](https://rclone.org/install/).
+
+## Fuse
+`yum install fuse`
+
 # Installation
 After downloading you need to change the script. 
 
