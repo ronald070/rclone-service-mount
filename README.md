@@ -8,26 +8,33 @@ After downloading you need to change the script.
 
 ## Change the following variables 
 
-    rclone_remote="Archive:"
-    mount_dir="/cloud/Archive"
-    log_file="/var/log/rclone"
+    `rclone_remote="Archive:"`
+    `mount_dir="/cloud/Archive"`
+    `log_file="/var/log/rclone"`
+
+Variable      | Value
+------------- | -----
+rclone_remote | This is the name of the remote location that you have configured in rclone.
+mount_dir     | This is the directory that is going to be the mount point.
+log_file      | This is the log file that is created by the service.
+
 
 ## Copy the files
-You need to copy rclone-archive to /etc/rc.d/init.d
+You need to copy rclone-service-mount to /etc/rc.d/init.
 
 ## Service operations
 You can start, stop or get status of the service.
 
 ### Start rclone-archive
-    service rclone-archive start
+    service rclone-service-mount start
 
 ### Stop rclone-archive
-    service rclone-archive stop
+    service rclone-service-mount stop
 
 ### Status rclone-archive
-    service rclone-archive status
+    service rclone-service-mount status
 
 ### Install at boot
-    chkconfig --add rclone-archivbe
+    chkconfig --add rclone-service-mount
 
 
